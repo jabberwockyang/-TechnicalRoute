@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术路线图 — 皮肤炎症通过E-cadherin⁺CD4⁺ TM跨组织迁移驱动肠道炎症的分子机制</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    padding: 30px 20px;
+    min-width: 1100px;
+  }
+
+  .main-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .sub-title {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 30px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* ====== Phase Section ====== */
+  .phase {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .phase-label {
+    position: absolute;
+    left: -8px;
+    top: 0;
+    bottom: 0;
+    width: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-weight: 700;
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 3px;
+    z-index: 2;
+  }
+
+  .phase-content {
+    margin-left: 45px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 4px solid;
+  }
+
+  /* Phase colors */
+  .phase-1 .phase-label { background: linear-gradient(180deg, #2563eb, #1d4ed8); }
+  .phase-1 .phase-content { border-left-color: #2563eb; }
+
+  .phase-2 .phase-label { background: linear-gradient(180deg, #7c3aed, #6d28d9); }
+  .phase-2 .phase-content { border-left-color: #7c3aed; }
+
+  .phase-3 .phase-label { background: linear-gradient(180deg, #059669, #047857); }
+  .phase-3 .phase-content { border-left-color: #059669; }
+
+  .phase-4 .phase-label { background: linear-gradient(180deg, #dc2626, #b91c1c); }
+  .phase-4 .phase-content { border-left-color: #dc2626; }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .phase-number {
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .phase-1 .phase-number { background: #2563eb; }
+  .phase-2 .phase-number { background: #7c3aed; }
+  .phase-3 .phase-number { background: #059669; }
+  .phase-4 .phase-number { background: #dc2626; }
+
+  .phase-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+
+  .science-q {
+    font-size: 11px;
+    color: #888;
+    background: #f8f9fa;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: auto;
+  }
+
+  /* ====== Flow Row ====== */
+  .flow-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 14px;
+  }
+
+  .flow-row:last-child { margin-bottom: 0; }
+
+  .flow-box {
+    flex: 1;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 12px;
+    position: relative;
+    transition: all 0.2s;
+  }
+
+  .flow-box:hover {
+    border-color: #94a3b8;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .flow-box .box-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .flow-box .box-content {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #334155;
+  }
+
+  .flow-box .box-content .detail {
+    font-size: 11px;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+
+  .flow-box .tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-right: 3px;
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+
+  .tag-blue { background: #dbeafe; color: #1d4ed8; }
+  .tag-purple { background: #ede9fe; color: #6d28d9; }
+  .tag-green { background: #d1fae5; color: #047857; }
+  .tag-red { background: #fee2e2; color: #b91c1c; }
+  .tag-amber { background: #fef3c7; color: #92400e; }
+  .tag-teal { background: #ccfbf1; color: #0f766e; }
+
+  /* Arrow between boxes */
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    min-width: 36px;
+    font-size: 18px;
+    color: #94a3b8;
+  }
+
+  /* ====== Parallel branches ====== */
+  .parallel-wrapper {
+    display: flex;
+    gap: 16px;
+    position: relative;
+  }
+
+  .branch {
+    flex: 1;
+    background: #fafbfc;
+    border: 1.5px dashed #d1d5db;
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .branch-label {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .branch-label.intrinsic { color: #7c3aed; }
+  .branch-label.extrinsic { color: #2563eb; }
+  .branch-label.residence { color: #059669; }
+  .branch-label.imprint { color: #b45309; }
+
+  .branch .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #475569;
+  }
+
+  .branch .step:last-child { margin-bottom: 0; }
+
+  .step-num {
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-num.purple { background: #7c3aed; }
+  .step-num.blue { background: #2563eb; }
+  .step-num.green { background: #059669; }
+  .step-num.amber { background: #d97706; }
+  .step-num.red { background: #dc2626; }
+
+  /* ====== Convergence box ====== */
+  .converge-box {
+    background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+    border: 2px solid #7c3aed;
+    border-radius: 10px;
+    padding: 12px 18px;
+    text-align: center;
+    margin-top: 14px;
+  }
+
+  .converge-box .converge-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #5b21b6;
+    margin-bottom: 4px;
+  }
+
+  .converge-box .converge-detail {
+    font-size: 11.5px;
+    color: #6d28d9;
+    line-height: 1.5;
+  }
+
+  /* ====== Down arrow between phases ====== */
+  .phase-connector {
+    display: flex;
+    justify-content: center;
+    padding: 4px 0;
+    margin-left: 45px;
+  }
+
+  .phase-connector svg {
+    display: block;
+  }
+
+  /* ====== Output/Result box ====== */
+  .output-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  .output-item {
+    flex: 1;
+    min-width: 160px;
+    background: #fff;
+    border: 1.5px solid;
+    border-radius: 8px;
+    padding: 8px 12px;
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .output-blue { border-color: #93c5fd; color: #1d4ed8; background: #eff6ff; }
+  .output-purple { border-color: #c4b5fd; color: #6d28d9; background: #f5f3ff; }
+  .output-green { border-color: #86efac; color: #047857; background: #f0fdf4; }
+  .output-red { border-color: #fca5a5; color: #b91c1c; background: #fef2f2; }
+
+  /* ====== Legend ====== */
+  .legend {
+    margin-top: 24px;
+    margin-left: 45px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    font-size: 11px;
+    color: #94a3b8;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+
+  /* ====== Intervention special layout ====== */
+  .intervention-row {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .intervention-box {
+    flex: 1;
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 2px solid;
+  }
+
+  .intervention-box .inv-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .intervention-box .inv-detail {
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #475569;
+  }
+
+  .inv-upstream { border-color: #fbbf24; background: #fffbeb; }
+  .inv-upstream .inv-title { color: #92400e; }
+
+  .inv-middle { border-color: #f87171; background: #fef2f2; }
+  .inv-middle .inv-title { color: #991b1b; }
+
+  .inv-downstream { border-color: #fb923c; background: #fff7ed; }
+  .inv-downstream .inv-title { color: #9a3412; }
+
+  /* ====== DSS Model box ====== */
+  .dss-box {
+    margin-top: 14px;
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    border: 2px solid #dc2626;
+    border-radius: 10px;
+    padding: 12px 18px;
+    text-align: center;
+  }
+
+  .dss-box .dss-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #991b1b;
+    margin-bottom: 3px;
+  }
+
+  .dss-box .dss-detail {
+    font-size: 11.5px;
+    color: #b91c1c;
+  }
+
+  /* ====== Final goal ====== */
+  .final-goal {
+    margin-top: 20px;
+    margin-left: 45px;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: #fff;
+    border-radius: 12px;
+    padding: 16px 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  .final-goal .goal-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .final-goal .goal-detail {
+    font-size: 12px;
+    color: #cbd5e1;
+    line-height: 1.6;
+  }
+
+  /* ====== Responsive arrow connector between parallel and converge ====== */
+  .merge-arrow {
+    display: flex;
+    justify-content: center;
+    padding: 6px 0;
+  }
+
+  .key-tech {
+    font-size: 10.5px;
+    color: #9ca3af;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  .highlight {
+    background: linear-gradient(transparent 60%, #fef08a 60%);
+    font-weight: 600;
+  }
+
+  /* data flow indicator */
+  .data-feed {
+    font-size: 10.5px;
+    color: #7c3aed;
+    text-align: center;
+    margin: 4px 0;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<div class="main-title">技术路线图</div>
+<div class="sub-title">皮肤炎症通过 E-cadherin⁺CD4⁺ 记忆T细胞跨组织迁移驱动肠道炎症的分子机制研究</div>
+
+<div class="container">
+
+  <!-- ==================== PHASE 1 ==================== -->
+  <div class="phase phase-1">
+    <div class="phase-label">第一阶段</div>
+    <div class="phase-content">
+      <div class="phase-header">
+        <span class="phase-number">研究内容一 · 3.1.1</span>
+        <span class="phase-title">E-cadherin⁺CD4⁺ TM 单细胞多组学图谱与跨组织迁移证据</span>
+        <span class="science-q">科学问题 ①</span>
+      </div>
+
+      <!-- Row 1: model -> sample -> sequencing -->
+      <div class="flow-row">
+        <div class="flow-box" style="flex:0.9;">
+          <div class="box-label">实验动物</div>
+          <div class="box-content">
+            Flg<sup>ft/ft</sup>（FT）小鼠 vs 同窝 WT 对照<br>
+            <span class="detail">n=6/组，Jackson Lab，SPF级饲养</span>
+          </div>
+        </div>
+        <div class="flow-arrow">➜</div>
+        <div class="flow-box" style="flex:0.9;">
+          <div class="box-label">样本采集</div>
+          <div class="box-content">
+            8-10周龄处死<br>
+            采集 <span class="tag tag-blue">皮肤dLN</span> <span class="tag tag-blue">肠系膜mLN</span><br>
+            <span class="detail">FACS分选 CD4⁺CD44⁺ 记忆T细胞</span>
+          </div>
+        </div>
+        <div class="flow-arrow">➜</div>
+        <div class="flow-box" style="flex:1.2;">
+          <div class="box-label">10x Genomics Multiome 平台</div>
+          <div class="box-content">
+            <span class="tag tag-blue">scRNA-seq</span> <span class="tag tag-purple">scATAC-seq</span> <span class="tag tag-teal">5' VDJ (TCR-seq)</span><br>
+            <span class="detail">每组目标细胞数 ≥ 10,000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: bioinformatics analysis -->
+      <div style="margin-top:2px; margin-bottom:4px; text-align:center;">
+        <svg width="24" height="20"><polyline points="12,2 12,14" stroke="#94a3b8" stroke-width="1.5" fill="none"/><polygon points="6,13 12,19 18,13" fill="#94a3b8"/></svg>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-box">
+          <div class="box-label">联合聚类与注释</div>
+          <div class="box-content">
+            Seurat / ArchR 联合分析<br>
+            聚焦 <span class="highlight">E-cadherin⁺(Cdh1⁺) CD4⁺ TM</span> 亚群
+          </div>
+        </div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-box">
+          <div class="box-label">分化轨迹</div>
+          <div class="box-content">
+            scVelo RNA velocity<br>
+            <span class="detail">构建亚群分化方向与动态</span>
+          </div>
+        </div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-box">
+          <div class="box-label">TCR克隆型分析</div>
+          <div class="box-content">
+            dLN ↔ mLN 间 <span class="highlight">TCR克隆共享</span><br>
+            <span class="detail">直接证明皮肤→肠道克隆迁移</span>
+          </div>
+        </div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-box">
+          <div class="box-label">表观遗传分析</div>
+          <div class="box-content">
+            Cdh1基因座染色质可及性<br>
+            <span class="detail">差异开放区域 TF motif 富集</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Output -->
+      <div class="output-row">
+        <div class="output-item output-blue">E-cadherin⁺CD4⁺ TM 亚群图谱</div>
+        <div class="output-item output-blue">皮肤→肠道 TCR迁移证据</div>
+        <div class="output-item output-blue">Cdh1表观遗传调控特征</div>
+        <div class="output-item output-blue">候选转录因子列表</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Down arrow -->
+  <div class="phase-connector">
+    <svg width="40" height="32">
+      <line x1="20" y1="2" x2="20" y2="22" stroke="#7c3aed" stroke-width="2.5" stroke-dasharray="4,3"/>
+      <polygon points="12,20 20,30 28,20" fill="#7c3aed"/>
+    </svg>
+  </div>
+  <div class="data-feed">▼ 多组学数据驱动下游机制研究 ▼</div>
+
+  <!-- ==================== PHASE 2 ==================== -->
+  <div class="phase phase-2">
+    <div class="phase-label">第二阶段</div>
+    <div class="phase-content">
+      <div class="phase-header">
+        <span class="phase-number">研究内容二 · 3.1.2 + 3.1.3</span>
+        <span class="phase-title">E-cadherin 表达调控机制 — 内在调控与外在诱导双线并行</span>
+        <span class="science-q">科学问题 ②</span>
+      </div>
+
+      <div class="parallel-wrapper">
+        <!-- Branch A: Intrinsic -->
+        <div class="branch">
+          <div class="branch-label intrinsic">线路A · T细胞内在调控（3.1.2）</div>
+          <div class="step">
+            <span class="step-num purple">1</span>
+            <span><b>三层交叉筛选候选TF：</b>scATAC-seq motif富集 + scRNA-seq差异表达 + RNA velocity动态先于Cdh1激活</span>
+          </div>
+          <div class="step">
+            <span class="step-num purple">2</span>
+            <span><b>SCENIC+ 基因调控网络</b>构建</span>
+          </div>
+          <div class="step">
+            <span class="step-num purple">3</span>
+            <span><b>体外功能验证：</b>MACS分选WT CD4⁺CD44⁺ TM（>95%），候选TF/通路激动/拮抗 → 流式检测 E-cadherin</span>
+          </div>
+          <div class="step">
+            <span class="step-num purple">4</span>
+            <span><b>CRISPRi / CRISPRa 验证：</b>靶向Cdh1候选调控元件（增强子/启动子），验证对Cdh1转录的直接调控</span>
+          </div>
+          <div class="step">
+            <span class="step-num purple">5</span>
+            <span><b>转录 vs 转运后调控：</b>若Rab11a上调，共聚焦成像分析E-cadherin与Rab11a共定位</span>
+          </div>
+          <div class="key-tech">关键技术：SCENIC+, CRISPRi/CRISPRa, 共聚焦成像</div>
+        </div>
+
+        <!-- Branch B: Extrinsic -->
+        <div class="branch">
+          <div class="branch-label extrinsic">线路B · 皮肤DC外在诱导（3.1.3）</div>
+          <div class="step">
+            <span class="step-num blue">1</span>
+            <span><b>DC诱导能力验证：</b>FT vs WT皮肤DC条件培养液 + WT CD4⁺ naïve T → 72h活化 → 流式检测 E-cadherin 诱导效率</span>
+          </div>
+          <div class="step">
+            <span class="step-num blue">2</span>
+            <span><b>分泌组差异分析：</b>Luminex / 蛋白组学，鉴定FT vs WT DC差异可溶性因子</span>
+          </div>
+          <div class="step">
+            <span class="step-num blue">3</span>
+            <span><b>加回/中和实验：</b>WT DC液 + 候选因子 → 能否诱导？FT DC液 + 中和Ab → 能否消除？</span>
+          </div>
+          <div class="step">
+            <span class="step-num blue">4</span>
+            <span><b>体内阻断验证：</b>FT小鼠注射中和Ab/小分子（n=6-8），流式检测dLN/mLN中E-cad⁺ TM变化</span>
+          </div>
+          <div class="key-tech">关键技术：Luminex, 蛋白组学, 条件培养液体系</div>
+        </div>
+      </div>
+
+      <!-- Convergence -->
+      <div class="merge-arrow">
+        <svg width="200" height="28">
+          <line x1="40" y1="4" x2="100" y2="22" stroke="#7c3aed" stroke-width="1.5"/>
+          <line x1="160" y1="4" x2="100" y2="22" stroke="#2563eb" stroke-width="1.5"/>
+          <polygon points="94,20 100,28 106,20" fill="#5b21b6"/>
+        </svg>
+      </div>
+
+      <div class="converge-box">
+        <div class="converge-title">两线交汇 — 完整调控通路整合</div>
+        <div class="converge-detail">
+          皮肤DC源性信号（外在因子）→ 激活T细胞转录因子（内在TF）→ <b>Cdh1表达上调</b><br>
+          验证 DC源性关键因子是否通过激活鉴定的TF/信号通路驱动Cdh1表达
+        </div>
+      </div>
+
+      <div class="output-row">
+        <div class="output-item output-purple">关键转录因子（内在调控）</div>
+        <div class="output-item output-purple">关键DC源性诱导因子（外在信号）</div>
+        <div class="output-item output-purple">DC信号 → TF → Cdh1 完整通路</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Down arrow -->
+  <div class="phase-connector">
+    <svg width="40" height="32">
+      <line x1="20" y1="2" x2="20" y2="22" stroke="#059669" stroke-width="2.5" stroke-dasharray="4,3"/>
+      <polygon points="12,20 20,30 28,20" fill="#059669"/>
+    </svg>
+  </div>
+  <div class="data-feed" style="color:#059669;">▼ 机制发现指导功能验证 ▼</div>
+
+  <!-- ==================== PHASE 3 ==================== -->
+  <div class="phase phase-3">
+    <div class="phase-label">第三阶段</div>
+    <div class="phase-content">
+      <div class="phase-header">
+        <span class="phase-number">研究内容三 · 3.1.4 + 3.1.5</span>
+        <span class="phase-title">E-cadherin⁺CD4⁺ TM 肠道驻留功能与"皮肤炎症印记携带"假说验证</span>
+        <span class="science-q">科学问题 ③</span>
+      </div>
+
+      <div class="parallel-wrapper">
+        <!-- Branch C: Residence -->
+        <div class="branch">
+          <div class="branch-label residence">模块A · 肠道驻留功能验证（3.1.4）</div>
+          <div class="step">
+            <span class="step-num green">1</span>
+            <span><b>DECMA1抗体阻断：</b>FT小鼠i.p.注射（n=6-8），BrdU脉冲追踪 → 肠道CD4⁺ TRM数量/驻留时长</span>
+          </div>
+          <div class="step">
+            <span class="step-num green">2</span>
+            <span><b>过继转移比较：</b>E-cad⁺ vs E-cad⁻ CD4⁺ TM → WT受体 → 比较肠道驻留效率/存活</span>
+          </div>
+          <div class="step">
+            <span class="step-num green">3</span>
+            <span><b>类器官共培养：</b>E-cad⁺/⁻ TM × 肠道类器官 → 黏附效率、同型结合（DECMA1对照）</span>
+          </div>
+          <div class="step">
+            <span class="step-num green">4</span>
+            <span><b>竞争性归巢：</b>荧光标记E-cad⁺ + E-cad⁻ TM混合共转移 → 肠道vs其他组织归巢优势</span>
+          </div>
+          <div class="key-tech">关键技术：BrdU脉冲追踪, 类器官共培养, 竞争性归巢</div>
+        </div>
+
+        <!-- Branch D: Imprint -->
+        <div class="branch">
+          <div class="branch-label imprint">模块B · "皮肤炎症印记携带"假说验证（3.1.5）</div>
+          <div class="step">
+            <span class="step-num amber">1</span>
+            <span><b>三种皮肤炎症模型：</b><br>
+              <span class="tag tag-purple">FT（Th2/Th17混合）</span>
+              <span class="tag tag-amber">MC903（Th2为主）</span>
+              <span class="tag tag-red">IMQ（Th17为主）</span><br>
+              分选dLN E-cad⁺ TM → 胞内因子染色 → Th极化表型
+            </span>
+          </div>
+          <div class="step">
+            <span class="step-num amber">2</span>
+            <span><b>印记输出验证：</b>各模型E-cad⁺ TM → WT受体 → DSS → 分析肠道Th极化特征</span>
+          </div>
+          <div class="step">
+            <span class="step-num amber">3</span>
+            <span><b>印记稳定性追踪：</b>FT dLN E-cad⁺ TM → WT → 3/7/14天回收 → 追踪印记保持或漂移</span>
+          </div>
+          <div class="step">
+            <span class="step-num amber">4</span>
+            <span><b>E-cadherin信号对印记维持：</b>DECMA1处理 → 检测炎症基因表达变化</span>
+          </div>
+          <div class="key-tech">关键技术：多种皮炎模型, 过继转移, DSS结肠炎模型</div>
+        </div>
+      </div>
+
+      <div class="output-row">
+        <div class="output-item output-green">E-cadherin 促进肠道驻留的直接证据</div>
+        <div class="output-item output-green">皮肤炎症类型决定肠道炎症极化表型</div>
+        <div class="output-item output-green">印记稳定性与 E-cadherin 信号依赖性</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Down arrow -->
+  <div class="phase-connector">
+    <svg width="40" height="32">
+      <line x1="20" y1="2" x2="20" y2="22" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4,3"/>
+      <polygon points="12,20 20,30 28,20" fill="#dc2626"/>
+    </svg>
+  </div>
+  <div class="data-feed" style="color:#dc2626;">▼ 整合上述机制发现，筛选干预靶点 ▼</div>
+
+  <!-- ==================== PHASE 4 ==================== -->
+  <div class="phase phase-4">
+    <div class="phase-label">第四阶段</div>
+    <div class="phase-content">
+      <div class="phase-header">
+        <span class="phase-number">研究内容四 · 3.1.6</span>
+        <span class="phase-title">基于机制发现的多层次靶点干预策略探索</span>
+        <span class="science-q">科学问题 ④</span>
+      </div>
+
+      <div class="intervention-row">
+        <div class="intervention-box inv-upstream">
+          <div class="inv-title">上游靶点干预</div>
+          <div class="inv-detail">
+            靶向3.1.2-3.1.3鉴定的<br><b>E-cadherin上游关键调控因子</b><br>
+            中和Ab / 小分子抑制剂<br>
+            <span class="detail">n=6-8/组</span><br>
+            评价：E-cad⁺ TM生成 + DSS结肠炎
+          </div>
+        </div>
+        <div class="intervention-box inv-middle">
+          <div class="inv-title">E-cadherin本身 — DECMA1机制深化</div>
+          <div class="inv-detail">
+            明确作用模式：<br><b>阻断组织驻留 vs 干扰胞内信号</b><br>
+            荧光标记追踪E-cad⁺ TM去向<br>
+            评估肠道上皮屏障完整性影响
+          </div>
+        </div>
+        <div class="intervention-box inv-downstream">
+          <div class="inv-title">下游靶点干预</div>
+          <div class="inv-detail">
+            基于scRNA-seq/蛋白组学鉴定<br><b>E-cad⁺亚群特异性效应分子</b><br>
+            相应中和Ab干预<br>
+            <span class="detail">n=6-8/组</span><br>
+            评价：DSS结肠炎
+          </div>
+        </div>
+      </div>
+
+      <!-- DSS model -->
+      <div class="dss-box">
+        <div class="dss-title">FT小鼠 DSS 结肠炎模型 — 统一评价平台</div>
+        <div class="dss-detail">比较三个层次干预的疗效与安全性 → 筛选最优干预策略</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final Goal -->
+  <div class="phase-connector">
+    <svg width="40" height="32">
+      <line x1="20" y1="2" x2="20" y2="22" stroke="#1e293b" stroke-width="2.5"/>
+      <polygon points="12,20 20,30 28,20" fill="#1e293b"/>
+    </svg>
+  </div>
+
+  <div class="final-goal">
+    <div class="goal-title">最终目标</div>
+    <div class="goal-detail">
+      系统阐明 E-cadherin⁺CD4⁺ 记忆T细胞介导"皮肤炎症→肠道炎症"跨组织传递的完整分子机制<br>
+      建立"上游调控 — E-cadherin本身 — 下游效应"多层次靶点干预体系<br>
+      为特应性皮炎合并炎症性肠病等皮肤-肠道炎症共病的精准治疗提供理论依据和候选靶点
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#2563eb;"></div>第一阶段：多组学图谱</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#7c3aed;"></div>第二阶段：调控机制</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#059669;"></div>第三阶段：功能验证</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#dc2626;"></div>第四阶段：干预策略</div>
+    <div class="legend-item" style="margin-left:20px;"><span style="border:1.5px dashed #d1d5db; padding:1px 8px; border-radius:4px; margin-right:4px;">┄</span>并行实验</div>
+    <div class="legend-item"><svg width="20" height="12"><line x1="2" y1="6" x2="16" y2="6" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,2"/></svg>数据流向</div>
+  </div>
+
+</div>
+
+</body>
+</html>
